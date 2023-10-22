@@ -1,9 +1,9 @@
-# React + Vite
+# Alexander Tsiklidis' CRUD Budgeting App
+Hello, and welcome to my CRUD Budgeting App. In the backend of this app we have some raw data from a users monthly expenses and income. We link this data and the server that stores it to this repository/front-end so that we may create a budgeting application for our users.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Website
+Deployed link on netlify (https://reliable-torrone-e380cc.netlify.app)
 
-Currently, two official plugins are available:
+### Planning Doc(s)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-# Budgeting-Front-End
+Trello Board (https://trello.com/b/Sw9wGqUw/budget-trello)
