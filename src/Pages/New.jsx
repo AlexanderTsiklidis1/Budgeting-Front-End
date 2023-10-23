@@ -2,8 +2,8 @@ import BudgetNewForm from "../Components/BudgetNewForm";
 
 function New() {
   return (
-    <div className="New">
-      <h2>New</h2>
+    <div className="new-budget-form">
+      <h2 className="welcome-heading">New</h2>
       <BudgetNewForm />
     </div>
   );

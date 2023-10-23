@@ -1,19 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 const API = import.meta.env.VITE_BASE_URL;
-// if we need to edit something - we need the value it has curently;
-   // what kind of req do we need to make for that?
 
 function BudgetEditForm() {
-  // why are we grabbing index? we  need top grab a SPECIFIC bookmark
+  
   let { index } = useParams();
 
   const [budget, setBudget] = useState({
-    name: "",
-    url: "",
+    id: "",
+    item_name: "",
+    amount: "",
+    date: "",
+    from: "",
     category: "",
-    description: "",
-    isFavorite: false,
   });
   const navigate = useNavigate(); 
   const handleTextChange = (event) => {
@@ -58,48 +57,55 @@ function BudgetEditForm() {
   return (
     <div className="Edit">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="id">ID:</label>
         <input
-          id="name"
-          value={budget.name}
+          id="id"
+          value={budget.id}
           type="text"
           onChange={handleTextChange}
-          placeholder="Name of Website"
+          placeholder="ID of Budget Item"
           required
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="Item-name">Budget Item-Name</label>
         <input
-          id="url"
+          id="item-name"
           type="text"
-          pattern="http[s]*://.+"
-          required
-          value={budget.url}
-          placeholder="http://"
+          value={budget.item_name}
+          placeholder="Name of Budget Item"
           onChange={handleTextChange}
         />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="amount">Amount</label>
         <input
-          id="category"
-          type="text"
-          name="category"
-          value={budget.category}
-          placeholder="educational, inspirational, ..."
+          id="amount"
+          type="number"
+          value={budget.amount}
+          placeholder="Budget Item Amount"
           onChange={handleTextChange}
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="Date">Date</label>
         <input
-          id="isFavorite"
-          type="checkbox"
+          id="Date"
+          type="text"
+          name="Date"
+          value={budget.date}
+          placeholder="YYYY-MM-DD"
+          onChange={handleTextChange}
+        />
+        <label htmlFor="From">From</label>
+        <input
+          id="From"
+          type="text"
+          placeholder="Record Where Budget Item is From"
           onChange={handleCheckboxChange}
-          checked={budget.isFavorite}
+          checked={budget.from}
         />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="description">Category</label>
         <textarea
-          id="description"
-          name="description"
-          value={budget.description}
+          id="Category"
+          name="Category"
+          value={budget.category}
           onChange={handleTextChange}
-          placeholder="Describe why you bookmarked this site"
+          placeholder="Describe the category of this Budget Item"
         />
         <br />
 

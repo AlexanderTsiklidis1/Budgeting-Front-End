@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import "./index.css"
 
 import Edit from "./Pages/Edit";
 import FourOFour from "./Pages/FourOFour";

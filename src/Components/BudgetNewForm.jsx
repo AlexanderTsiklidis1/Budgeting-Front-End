@@ -1,96 +1,100 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-const API = import.meta.env.VITE_BASE_URL
+const API = import.meta.env.VITE_BASE_URL;
 
 function BudgetNewForm() {
   const [budget, setBudget] = useState({
-    name: "",
-    url: "",
+    id: "",
+    item_name: "",
+    amount: "",
+    date: "",
+    from: "",
     category: "",
-    isFavorite: false,
-    description: "",
   });
 
   const navigate = useNavigate();
-  const handleTextChange = (event) => {
-    
-    setBudget({ ...bookmark, [event.target.id]: event.target.value });
-  };
 
-  const handleCheckboxChange = () => {
-    setBudget({ ...bookmark, isFavorite: !bookmark.isFavorite });
+  const handleTextChange = (event) => {
+    setBudget({ ...budget, [event.target.id]: event.target.value });
   };
 
   const addBudget = () => {
-   
     const httpOptions = {
-      "method" : "POST",
-      "body" : JSON.stringify(budget),
-      "headers" : {
-        "Content-type" : "application/json"
-      }
-    }
+      method: "POST",
+      body: JSON.stringify(budget),
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
     fetch(`${API}/budgets`, httpOptions)
       .then((res) => {
-        console.log(res)
-        alert(`${budget.name} was added to the database!`);
-        navigate('/budgets');
+        console.log(res);
+        alert(`${budget.item_name} was added to the database!`);
+        navigate("/budgets");
       })
-      .catch((err) => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     addBudget();
   };
+
   return (
-    <div className="New">
+    <div className="new-budget-form">
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="id">ID</label>
         <input
-          id="name"
-          value={budget.name}
+          id="id"
+          value={budget.id}
           type="text"
-          onChange={ handleTextChange }
-          placeholder="Name of Website"
+          onChange={handleTextChange}
+          placeholder="Id of budget item"
           required
         />
-        <label htmlFor="url">URL:</label>
+        <label htmlFor="item_name">Budget Item Name</label>
         <input
-          id="url"
+          id="item_name"
           type="text"
-          pattern="http[s]*://.+"
+          value={budget.item_name}
+          onChange={handleTextChange}
+          placeholder="Name of Budget Item"
           required
-          value={budget.url}
-          placeholder="http://"
+        />
+        <label htmlFor="amount">Amount</label>
+        <input
+          id="amount"
+          type="number"
+          value={budget.amount}
+          placeholder="Budget Item Amount"
           onChange={handleTextChange}
         />
-        <label htmlFor="category">Category:</label>
+        <label htmlFor="date">Date</label>
         <input
-          id="category"
+          id="date"
           type="text"
-          name="category"
-          value={budget.category}
-          placeholder="educational, inspirational, ..."
+          name="Date"
+          value={budget.date}
+          placeholder="YYYY-MM-DD"
           onChange={handleTextChange}
         />
-        <label htmlFor="isFavorite">Favorite:</label>
+        <label htmlFor="from">From</label>
         <input
-          id="isFavorite"
-          type="checkbox"
-          onChange={handleCheckboxChange}
-          checked={budget.isFavorite}
+          id="from"
+          type="text"
+          onChange={handleTextChange}
+          value={budget.from}
         />
-        <label htmlFor="description">Description:</label>
+        <label htmlFor="category">Category</label>
         <textarea
-          id="description"
-          name="description"
-          value={budget.description}
+          id="category"
+          name="Category"
+          value={budget.category}
           onChange={handleTextChange}
-          placeholder="Describe why you bookmarked this site"
+          placeholder="Describe the category of budget-item"
         />
         <br />
-        <input type="submit" />
+        <input type="submit" className="submit-button" />
       </form>
     </div>
   );

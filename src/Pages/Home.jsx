@@ -1,9 +1,10 @@
 function Home() {
     return (
-      <div className="Home">
-        <h2>Welcome</h2>
-        <h3>To the greatest Budgeting App!</h3>
-      </div>
+      <div className="home-container">
+      <h2 className="welcome-heading">Welcome</h2>
+      <h3 className="app-heading">To Alex Tsiklidis' Budgeting App!</h3>
+      
+    </div>
     );
   }
   

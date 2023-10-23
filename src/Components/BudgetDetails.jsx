@@ -1,68 +1,66 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-const API = import.meta.env.VITE_BASE_URL
+const API = import.meta.env.VITE_BASE_URL;
 
 function BudgetDetails() {
-  const [budget, setBudget] = useState([]);
-  let { index } = useParams();
-  let navigate = useNavigate();
+  const [budget, setBudget] = useState({});
+  const { index } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`${API}/budgets/${index}`)
-    .then(response => response.json())
-    .then(bookmark => {
-      console.log(budget)
-      setBudget(budget)
-    })
-    .catch(() => navigate("/not-found"))
+      .then((response) => response.json())
+      .then((fetchedBudget) => {
+        setBudget(fetchedBudget);
+      })
+      .catch(() => navigate("/not-found"));
   }, [index, navigate]);
 
   const handleDelete = () => {
-    const httpOptions = { "method" : "DELETE" };
+    const httpOptions = { method: "DELETE" };
 
-    // we know we need to delete a specific resource
     fetch(`${API}/budgets/${index}`, httpOptions)
       .then((res) => {
-        console.log(res)
-        alert("hey - budget was deleted!  Way to GO!");
+        console.log(res);
+        alert("Budget was deleted successfully!");
         navigate('/budgets');
       })
-      .catch((err) => console.error(err))
-      // so we need to FETCH to our DB to make 
-        // we need a  DELETE request
-        // then once we've deleted we should reroute the user
-        // and pobably let them know we deleted something
+      .catch((err) => console.error(err));
   };
+
   return (
-    <article>
-      <h3>
-        {budget.isFavorite ? <span>⭐️</span> : null} {budget.name}
+    <article className="home-container">
+      <h3 className="welcome-heading">
+        {budget.item_name}
       </h3>
-      <h5>
-        <span>
-          <a href={budget.url}>{budget.name}</a>
-        </span>{" "}
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {budget.url}
+      <h5 className="app-heading">
+        Amount: {budget.amount}
       </h5>
-      <h6>{budget.category}</h6>
-      <p>{budget.description}</p>
+      <h6 className="app-heading">
+        Date: {budget.date}
+      </h6>
+      <p className="app-heading">
+        From: {budget.from}
+      </p>
+      <p className="app-heading">
+        Category: {budget.category}
+      </p>
       <div className="showNavigation">
         <div>
           {" "}
           <Link to={`/budgets`}>
-            <button>Back</button>
+            <button className="button">Back</button>
           </Link>
         </div>
         <div>
           {" "}
           <Link to={`/budgets/${index}/edit`}>
-            <button>Edit</button>
+            <button className="button" style={{ padding: "10px" }}>Edit</button>
           </Link>
         </div>
         <div>
           {" "}
-          <button onClick={handleDelete}>Delete</button>
+          <button onClick={handleDelete} className="button" style={{ padding: "10px" }}>Delete</button>
         </div>
       </div>
     </article>
