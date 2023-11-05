@@ -6,17 +6,19 @@
   margin: 20px auto; 
   max-width: 80%; 
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 50rem;
 }
 
 .welcome-heading {
-  font-size: 24px;
+  font-size: 8rem;
   color: #333;
   text-decoration: underline;
 }
 
 .app-heading {
-  font-size: 20px;
+  font-size: 6rem;
   color: #555;
+  text-decoration: underline;
 }
 
 .navbar {
