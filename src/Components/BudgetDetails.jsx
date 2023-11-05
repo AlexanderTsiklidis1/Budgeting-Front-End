@@ -8,7 +8,7 @@ function BudgetDetails() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${API}/budgets/${index}`)
+    fetch(`${API}budgets/${index}`)
       .then((response) => response.json())
       .then((fetchedBudget) => {
         setBudget(fetchedBudget);
