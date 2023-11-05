@@ -8,7 +8,7 @@ function Budgets() {
   const [totalBudget, setTotalBudget] = useState(0); 
 
   useEffect(() => {
-    fetch(`${API}budgets`)
+    fetch(`${API}/budgets`)
       .then((response) => response.json())
       .then((budgets) => {
         setBudgets(budgets);

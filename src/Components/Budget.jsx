@@ -11,7 +11,7 @@ function Budget({ budget, index }) {
       <td>{budget.from}</td>
       <td>{budget.category}</td>
       <td>
-        <Link to={`/budgets/${index}`}>...</Link>
+        <Link  to={`/budgets/${index}`}>.....</Link>
       </td>
     </tr>
   );
